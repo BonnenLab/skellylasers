@@ -45,9 +45,18 @@ class SessionDataLoader:
         if self._session_path is None:
             raise ValueError("Session path is not specified - Can't load mediapipe data without a session path")
 
-        mediapipe_data_path = self.session_path / "output_data" / "partially_processed_data" / "mediaPipeSkel_3d_origin_aligned.npy"
+        mediapipe_data_path = self.session_path / "output_data" / "mediapipe_body_3d_xyz.npy"
         logger.info(f"loading mediapipe data from {mediapipe_data_path}")
+
         mediapipe_fr_mar_xyz = np.load(str(mediapipe_data_path))
+
+        left_hand_path = self.session_path / "output_data" / "mediapipe_left_hand_3d_xyz.npy"
+        left_hand = np.load(str(left_hand_path))
+
+        right_hand_path = self.session_path / "output_data" / "mediapipe_right_hand_3d_xyz.npy"
+        right_hand = np.load(str(right_hand_path))
+
+        mediapipe_fr_mar_xyz = np.concatenate((mediapipe_fr_mar_xyz,right_hand,left_hand),axis=1)
 
         if move_to_origin:
             mean_position_xyz = np.nanmedian(np.nanmedian(mediapipe_fr_mar_xyz, axis=0), axis=0)

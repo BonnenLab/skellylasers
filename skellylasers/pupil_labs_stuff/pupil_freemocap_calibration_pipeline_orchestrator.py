@@ -176,9 +176,13 @@ if __name__ == "__main__":
     # vor_frame_start_in = 614
     # vor_frame_end_in = 1073
 
-    session_id = "session_2023-03-02-14_21_44_Jenns_Calibration"
-    vor_frame_start_in = 1050
-    vor_frame_end_in = 1800
+    # session_id = "session_2023-03-02-14_21_44_Jenns_Calibration"
+    # vor_frame_start_in = 1050
+    # vor_frame_end_in = 1800
+
+    session_id = "session_2023-04-08-14_45_29_rachel_project_take3"
+    vor_frame_start_in = 830
+    vor_frame_end_in = 1600
 
     data_path = Path("/home/vpixx-python/freemocap_data")
     this_session_path = data_path / session_id
